@@ -1,0 +1,31 @@
+{
+  "name": "pg6301exam",
+  "version": "1.0.0",
+  "description": "exam webdev and api 2023-02-20",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
+    "dev": "npm run dev:server && npm run dev:client",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "alex": "npm run build && npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s0riano/PG6301Exam.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s0riano/PG6301Exam/issues"
+  },
+  "homepage": "https://github.com/s0riano/PG6301Exam#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0",
+    "prettier": "^2.5.1"
+  }
+}
