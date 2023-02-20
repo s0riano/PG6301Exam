@@ -1,9 +1,21 @@
 import express from 'express';
 import bodyParser from "body-parser";
+import {LoginApi} from "./api´s/loginApi.js";
+import * as path from "path";
 
 const app = express();
 app.use(express.static("../client/dist"));
 app.use(bodyParser.json());
+
+app.use("/api/loginApi", LoginApi);
+
+app.use((req,res,next) => {
+    if(req.method === "GET" && !req.path.startsWith("/api")){
+        return res.sendFile(path.resolve("../client/dist/index.html"));
+    } else {
+        next();
+    }
+})
 
 
 
