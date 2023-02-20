@@ -1,0 +1,14 @@
+/.idea/
+/node_modules/
+/server/node_modules/
+/client/client/node_modules/
+/client/client/.parcel-cache/
+/server/.env
+/client/client/dist/
+/client/node_modules/
+/client/dist/
+/client/.parcel-cache/
+/client/coverage/
+/server/coverage/
+/.deployment
+/.vscode/
