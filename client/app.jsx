@@ -1,45 +1,19 @@
 import React, {useState} from "react";
 import {FrontPage} from "./pages/frontpage";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {fetchJson} from "./func/http";
+import {ListUsers} from "./pages/listUsers";
+import {AddUser} from "./pages/addUser";
 
 
-function AddUser(){
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [department, setDepartment] = useState("");
 
-    async function handleSubmit(e){
-        e.preventDefault();
 
-        await fetchJson("/api/users", {
-            method: "post",
-            json: {username, password, department}
-        });
-
-        setUsername("")
-        setPassword("")
-        setDepartment("")
-    }
-
+function Users(){
     return(
-        <from onSubmit={handleSubmit}>
-            <h1>Create new Employee</h1>
-            <div>
-                Name:
-                <input value={username} onChange={(e) => setUsername(e.target.value)}/>
-            </div>
-            <div>
-                Password:
-                <input value={password} onChange={(e) => setPassword(e.target.value)}/>
-            </div>
-            <div>
-                Department;
-                <input value={department} onChange={(e) => setDepartment(e.target.value)}/>
-            </div>
-            <button>Create</button>
-        </from>
-    )
+        <Routes>
+            <Route path={"/list"} element={<ListUsers />} />
+            <Route path={"/new"} element={<AddUser />} />
+        </Routes>
+    );
 }
 
 
@@ -49,10 +23,13 @@ export function App() {
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path={"/"} element={<FrontPage setError={setError} />} />
-                    <Route path={"/new"} element={<AddUser/>} />
+                    <Route path={"/"} element={<FrontPage setError={setError}/>}/>
+                    <Route path={"/users/*"} element={<Users />}/>
+                    <Route path={"/users/new"} element={<AddUser />} />
+                    <Route path={"/users/list"} element={<ListUsers />} />
                 </Routes>
             </BrowserRouter>
+            {error && <pre>{JSON.stringify(error, null, 2)}</pre>}
         </>
     );
 }
